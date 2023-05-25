@@ -1,0 +1,47 @@
+﻿@page "/register"
+
+
+<div class="mt-5 row">
+    <div class="card col-12 col-lg-6 me-auto ms-auto p-3">
+        <h3 class="card-title">Register</h3>
+        <div class="card-body">
+            <EditForm Model="@RegisterViewModel" OnValidSubmit="HandleValidSubmit">
+                <div class="row mt-2">
+                    <label class="col-12 col-md-4 p-0 form-label" for="firstName">First name:</label>
+                    <div class="col-12 col-md-8">
+                        <InputText id="firstName" class="form-control login-field" @bind-Value="RegisterViewModel.FirstName"></InputText>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <label class="col-12 col-md-4 p-0 form-label" for="lastName">Last name:</label>
+                    <div class="col-12 col-md-8">
+                        <InputText type="lastName" class="form-control login-field" @bind-Value="@RegisterViewModel.LastName"></InputText>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <label class="col-12 col-md-4 p-0 form-label" for="email">Email:</label>
+                    <div class="col-12 col-md-8">
+                        <InputText id="email" class="form-control login-field" @bind-Value="RegisterViewModel.Email"></InputText>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <label class="col-12 col-md-4 p-0 form-label" for="userName">Username:</label>
+                    <div class="col-12 col-md-8">
+                        <InputText id="userName" class="form-control login-field" @bind-Value="RegisterViewModel.UserName"></InputText>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <label class="col-12 col-md-4 p-0 form-label" for="password">Password:</label>
+                    <div class="col-12 col-md-8">
+                        <InputText id="password" type="password" class="form-control login-field" @bind-Value="RegisterViewModel.Password"></InputText>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="offset-md-4">
+                        <button class="m-2 ms-0 p-2">Register</button>
+                    </div>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+﻿@page "/eventdetails"
+@page "/eventdetails/{eventid}"
+
+<h1 class="page-title">Details for @EventDetailViewModel.Name</h1>
+
+@Message
+
+<EditForm Model="@EventDetailViewModel" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary></ValidationSummary>
+
+    <div class="row mb-3">
+        <label for="name" class="col-sm-3 form-label">Event name: </label>
+        <div class="col-sm-8">
+            <InputText id="name" class="form-control" @bind-Value="@EventDetailViewModel.Name" placeholder="Enter event name"></InputText>
+            <ValidationMessage For="@(() => EventDetailViewModel.Name)" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="price" class="col-sm-3 form-label">Ticket price: </label>
+        <div class="col-sm-8">
+            <InputNumber id="price" class="form-control" @bind-Value="@EventDetailViewModel.Price" placeholder="Enter price"></InputNumber>
+            <ValidationMessage For="@(() => EventDetailViewModel.Price)" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="artist" class="col-sm-3 form-label">Artist name: </label>
+        <div class="col-sm-8">
+            <InputText id="artist" class="form-control" @bind-Value="@EventDetailViewModel.Artist" placeholder="Enter artist"></InputText>
+            <ValidationMessage For="@(() => EventDetailViewModel.Artist)" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="date" class="col-sm-3 form-label">Event date: </label>
+        <div class="col-sm-8">
+            <InputDate id="date" class="form-control" @bind-Value="@EventDetailViewModel.Date"></InputDate>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="description" class="col-sm-3 form-label">Description: </label>
+        <div class="col-sm-8">
+            <InputTextArea id="description" class="form-control" @bind-Value="@EventDetailViewModel.Description" placeholder="Enter description"></InputTextArea>
+            <ValidationMessage For="@(() => EventDetailViewModel.Description)" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="imageurl" class="col-sm-3 form-label">Image: </label>
+        <div class="col-sm-8">
+            <InputText id="imageurl" class="form-control" @bind-Value="@EventDetailViewModel.ImageUrl" placeholder="Enter image URL"></InputText>
+            <ValidationMessage For="@(() => EventDetailViewModel.ImageUrl)" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="category" class="col-sm-3 form-label">Category: </label>
+        <div class="col-sm-8">
+            <InputSelect id="category" class="form-control" @bind-Value="@SelectedCategoryId">
+                @foreach (var category in Categories)
+                {
+                    <option value="@category.CategoryId">@category.Name</option>
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <button type="submit" class="submit-button">Save event</button>
+
+</EditForm>
+
+@if (SelectedEventId != Guid.Empty)
+{
+    <p>
+        <button @onclick="DeleteEvent" class="delete-button mt-3">Delete event</button>
+    </p>
+}
+<br />
+<p class="back-to-catalog mt-3"><img src="img/back-arrow.svg" /><a @onclick="@NavigateToOverview">Back to overview</a></p>
